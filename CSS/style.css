@@ -3,6 +3,7 @@
     --secondary-color: #972787;
     --bold-color: #caff81;
     --bold-color-2: #9ae445be;
+    --white-text: #ecf0f1;
 }
 
 body {
@@ -20,7 +21,7 @@ body:before {
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url('background.jpg');
+    background-image: url('/home/archbug/projects/personal-website/img/background.jpg');
     background-size: cover;
     background-position: top;
     background-attachment: fixed;
@@ -48,7 +49,7 @@ body:before {
 
 .menu a {
     text-decoration: none;
-    color: #ecf0f1;
+    color: var(--white-text);
     font-size: 18px;
     padding: 10px 20px;
     transition: color 0.3s ease, background-color 0.3s ease;
@@ -56,91 +57,13 @@ body:before {
 
 .menu a:hover {
     color: var(--secondary-color);
-    background-color: #ecf0f1;
+    background-color: var(--white-text);
     border-radius: 5px;
 }
-/*
-.menu {
-    position: center;
-    width: 300px;
-    height: 300px;
-}
-
-.menu-item {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background-color: #972787;
-    color: #ECF0F1;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    transition: transform 0.2s, background-color 0.5s, color 0.5s;
-}
-
-.menu-item:hover {
-    background-color: #ECF0F1;
-    color: #972787;
-}
-
-.menu-item:nth-child(1) {
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(0deg) translate(120px) rotate(0deg);
-}
-
-.menu-item:nth-child(1):hover {
-    transform: scale(2) translate(70%, -30%);
-}
-
-.menu-item:nth-child(2) {
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(72deg) translate(120px) rotate(-72deg);
-}
-
-.menu-item:nth-child(2):hover {
-    transform: scale(2) translate(5%, 50%);
-}
-
-.menu-item:nth-child(3) {
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(144deg) translate(120px) rotate(-144deg);
-}
-
-.menu-item:nth-child(3):hover {
-    transform: scale(2) translate(-100%, 20%);
-}
-
-.menu-item:nth-child(4) {
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(216deg) translate(120px) rotate(-216deg);
-}
-
-.menu-item:nth-child(4):hover {
-    transform: scale(2) translate(-100%, -75%);
-}
-
-.menu-item:nth-child(5) {
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(288deg) translate(120px) rotate(-288deg);
-}   
-
-.menu-item:nth-child(5):hover {
-    transform: scale(2) translate(5%, -100%);
-}
-
-*/
 
 .home-text {
     background-color: var(--bg-color);
-    color: #ECF0F1;
+    color: var(--white-text);
     border-radius: 30px;
     display: inline-grid;
     justify-content: center;
@@ -173,11 +96,24 @@ body:before {
 .home-text a:active {
     color: var(--bold-color-2);
 }
-.double-spaced::after {
-    content: "";
-    display: block;
-    padding-bottom: 20px;
+
+.home-text h1 {
+    color: var(--secondary-color);
+    text-shadow: 
+        2px 2px 0 var(--white-text),
+        -2px 2px 0 var(--white-text),
+        -2px -2px 0 var(--white-text),
+        2px -2px 0 var(--white-text);
+    font-size: 60px;
+    text-align: center;
 }
+.home-text h3 {
+    margin-top: 0px;
+    color: var(--white-text);
+    font-size: 30px;
+    text-align: center;
+}
+
 #footer {
     width: 100%;
     height: 150px;
@@ -258,6 +194,11 @@ body:before {
     color: #ECF0F1;
     transform: rotateY(180deg);
 }
+.home-text h3 > hr {
+    color: var(--secondary-color);
+    background-color: var(--secondary-color);
+    height: 6px;
+}
 
 .post-preview {
     width: 100%;
@@ -267,6 +208,35 @@ body:before {
 }
 .post-preview + h5 {
     margin-top: 2px;
+}
+
+#shrines {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.shrine {
+    flex: 1 1 calc(30% - 20px); /* Adjust the value based on desired proportions */
+    margin: 10px;
+    height: 33vh; /* Adjust the value based on desired proportions */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--secondary-color);
+    color: var(--white-text);
+    display: box;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+.shrine img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    margin-top: -40px;
 }
 
 .viewcount, .description, .tags {
@@ -285,6 +255,10 @@ body:before {
     .card {
         width: 30%;    
     }
+    .shrine {
+        flex: 1 1 45%;
+        height: 40vh;
+    }
 }
 
 @media (max-width: 900px) {
@@ -292,6 +266,10 @@ body:before {
     .card {
         width: 40%;
         height: 40vh;      
+    }
+    .shrine {
+        flex: 1 1 80%;
+        height: 40vh;
     }
 }
 @media (max-width: 650px) {
@@ -306,5 +284,9 @@ body:before {
     .card {
         width: 80%;
         height: 40vh;      
+    }
+    .shrine {
+        flex: 1 1 100%; /* Adjust the value based on desired proportions */
+        height: 40vh; /* Adjust the value based on desired proportions */
     }
 }
