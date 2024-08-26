@@ -143,45 +143,57 @@ body:before {
 .directory a:hover {
     color: var(--bold-color-2);
 }
-
 .blog-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid; /* Change from flex to grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ensures responsive grid layout */
     gap: 20px;
     padding: 20px;
+    overflow: hidden;
+    align-items: stretch; /* Ensures all items stretch to the height of the tallest */
 }
 
 .card {
-    width: 20%;
     perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin: 10px;
+    width: 100%; /* Allow the grid to manage the width */
+    height: auto; /* Let the grid and content determine the height */
 }
 
 .card-inner {
     position: relative;
     width: 100%;
-    height:100%;
-    min-height: 375px;
+    min-height: 550px; /* Maintains consistent height */
+    height: 100%; /* Ensure it stretches to fill the card */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-}
-
-.card:hover .card-inner {
-    transform: rotateY(180deg);
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    backface-visibility: hidden;
 }
 
 .card-front, .card-back {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100%; /* Ensure front and back fill the card */
     backface-visibility: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-front {
@@ -194,20 +206,29 @@ body:before {
     color: #ECF0F1;
     transform: rotateY(180deg);
 }
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.post-preview {
+    max-width: 100%;
+    min-height: fit-content;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    filter: url(#drop-shadow);
+}
+
+.viewcount, .description, .tags {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
 .home-text h3 > hr {
     color: var(--secondary-color);
     background-color: var(--secondary-color);
     height: 6px;
-}
-
-.post-preview {
-    width: 100%;
-    height: 50%;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-.post-preview + h5 {
-    margin-top: 2px;
 }
 
 #shrines {
@@ -240,21 +261,11 @@ body:before {
     filter: url(#drop-shadow);
 }
 
-.viewcount, .description, .tags {
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-.viewcount, .tags {
-    position: absolute;
-    bottom: 5%;
-}
-
-
 /* Responsive design */
 @media (max-width: 1335px) {
     .card {
-        width: 30%;    
+        flex: 1 1 30%; 
+        max-width: calc(30% - 40px);  
     }
     .shrine {
         flex: 1 1 45%;
@@ -264,8 +275,8 @@ body:before {
 @media (max-width: 900px) {
     
     .card {
-        width: 40%;
-        height: 40vh;      
+        flex: 1 1 50%;   
+        max-width: calc(45% - 40px);  
     }
     .shrine {
         flex: 1 1 80%;
@@ -281,8 +292,8 @@ body:before {
         margin-right: 5%;
     }
     .card {
-        width: 80%;
-        height: 40vh;      
+        flex: 1 1 100%;  
+        max-width: calc(100% - 40px);   
     }
     .shrine {
         flex: 1 1 100%; /* Adjust the value based on desired proportions */
