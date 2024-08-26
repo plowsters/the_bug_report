@@ -21,7 +21,7 @@ body:before {
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url('/home/archbug/projects/personal-website/img/background.jpg');
+    background-image: url('../img/background.jpg');
     background-size: cover;
     background-position: top;
     background-attachment: fixed;
@@ -220,7 +220,7 @@ body:before {
 .shrine {
     flex: 1 1 calc(30% - 20px); /* Adjust the value based on desired proportions */
     margin: 10px;
-    height: 33vh; /* Adjust the value based on desired proportions */
+    flex-grow: 1;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: var(--secondary-color);
@@ -230,13 +230,14 @@ body:before {
     justify-content: center;
     text-align: center;
     box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    margin-bottom: 40px;
 }
 
 .shrine img {
     max-width: 100%;
-    max-height: 100%;
+    height: auto;
     object-fit: cover;
-    margin-top: -40px;
+    filter: url(#drop-shadow);
 }
 
 .viewcount, .description, .tags {
@@ -257,7 +258,6 @@ body:before {
     }
     .shrine {
         flex: 1 1 45%;
-        height: 40vh;
     }
 }
 
@@ -269,7 +269,6 @@ body:before {
     }
     .shrine {
         flex: 1 1 80%;
-        height: 40vh;
     }
 }
 @media (max-width: 650px) {
@@ -287,6 +286,5 @@ body:before {
     }
     .shrine {
         flex: 1 1 100%; /* Adjust the value based on desired proportions */
-        height: 40vh; /* Adjust the value based on desired proportions */
     }
 }
