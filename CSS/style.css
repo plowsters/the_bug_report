@@ -158,7 +158,6 @@ body:before {
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    margin: 10px;
     width: 100%; /* Allow the grid to manage the width */
     height: auto; /* Let the grid and content determine the height */
 }
@@ -183,7 +182,6 @@ body:before {
 
 .card-front, .card-back {
     position: absolute;
-    width: 100%;
     height: 100%; /* Ensure front and back fill the card */
     backface-visibility: hidden;
     border-radius: 10px;
@@ -192,19 +190,41 @@ body:before {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .card-front {
     background-color: var(--bg-color);
     color: #ECF0F1;
+    justify-content: space-between;
+}
+
+.card-front h2 {
+    align-self: flex-start, anchor-center; /* Stick h2 to the top */
+    margin-bottom: 10px; /* Optional spacing */
+}
+
+.card-front h5, 
+.card-front p.viewcount {
+    align-self: flex-end, anchor-center; /* Stick the photo credit and viewcount to the bottom */
+    margin-top: 10px; /* Optional spacing */
 }
 
 .card-back {
     background-color: var(--secondary-color);
     color: #ECF0F1;
     transform: rotateY(180deg);
+    justify-content: flex-start; /* Align top elements at the top */
+}
+
+.card-back h2,
+.card-back p.description {
+    align-self: flex-start, anchor-center; /* Align these elements to the top */
+}
+
+.card-back p.tags {
+    bottom: 20px;
+    align-self: flex-end, anchor-center; /* Align this element to the bottom */
+    position: absolute;
 }
 
 .card:hover .card-inner {
@@ -212,11 +232,13 @@ body:before {
 }
 
 .post-preview {
+    flex-grow: 1;
     max-width: 100%;
-    min-height: fit-content;
+    max-height: 60%;
     height: auto;
     border-radius: 10px;
     object-fit: cover;
+    margin-top: 25px;
     filter: url(#drop-shadow);
 }
 
@@ -264,8 +286,7 @@ body:before {
 /* Responsive design */
 @media (max-width: 1335px) {
     .card {
-        flex: 1 1 30%; 
-        max-width: calc(30% - 40px);  
+        flex: 1 1 30%;  
     }
     .shrine {
         flex: 1 1 45%;
@@ -275,8 +296,7 @@ body:before {
 @media (max-width: 900px) {
     
     .card {
-        flex: 1 1 50%;   
-        max-width: calc(45% - 40px);  
+        flex: 1 1 50%;  
     }
     .shrine {
         flex: 1 1 80%;
@@ -292,8 +312,7 @@ body:before {
         margin-right: 5%;
     }
     .card {
-        flex: 1 1 100%;  
-        max-width: calc(100% - 40px);   
+        flex: 1 1 100%;
     }
     .shrine {
         flex: 1 1 100%; /* Adjust the value based on desired proportions */
