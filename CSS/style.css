@@ -303,6 +303,58 @@ body:before {
     filter: url(#drop-shadow);
 }
 
+.shrine a {
+    text-decoration: none;
+}
+
+.shrine a:hover > h1 {
+    color: var(--bold-color);
+}
+
+.shrine a:active > h1 {
+    color: var(--bold-color-2);
+}
+
+.album {
+    display: flex; /* Enables flexbox for centering */
+    justify-content: center; /* Horizontally centers the image */
+    align-items: center; /* Vertically centers the image */
+    flex-direction: column; /* Ensures content inside the div stacks vertically */
+    text-align: center; /* Centers text inside the div */
+}
+
+.album img {
+    max-width: 65%;
+    height: auto;
+    margin-bottom: 2%;
+}
+
+.album p {
+    max-width: 65%;
+}
+
+.album h3 {
+    margin-top: 1%;
+}
+
+.album iframe {
+    margin-bottom: 2%;
+}
+.album ul {
+    text-align: left;
+}
+
+.toc {
+    display: flex; /* Enables flexbox for centering */
+    justify-content: center; /* Horizontally centers the image */
+    align-items: center; /* Vertically centers the image */
+    flex-direction: column; /* Ensures content inside the div stacks vertically */
+    text-align: center; /* Centers text inside the div */
+}
+.toc ol {
+    text-align: left;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -425,6 +477,10 @@ body:before {
     .shrine {
         flex: 1 1 45%;
     }
+    .album iframe {
+        height: 405px;
+        width: 720px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -437,6 +493,10 @@ body:before {
     }
     .shrine {
         flex: 1 1 80%;
+    }
+    .album iframe {
+        height: 304px;
+        width: 540px;
     }
 }
 @media (max-width: 650px) {
@@ -456,5 +516,9 @@ body:before {
     }
     .shrine {
         flex: 1 1 100%; /* Adjust the value based on desired proportions */
+    }
+    .album iframe {
+        height: auto;
+        width: auto;
     }
 }

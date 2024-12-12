@@ -6,18 +6,11 @@
         "version": "0.2.0",
         "configurations": [
             {
-                "type": "firefox",
+                "name": "Launch Chrome",
                 "request": "launch",
-                "name": "Open index.html in Firefox",
-                "file": "/home/archbug/projects/personal-website/index.html",
-                "reAttach": true,
-                "pathMappings": [
-                    {
-                        "url": "file:///home/archbug/projects/personal-website/",
-                        "path": "/home/archbug/projects/personal-website/"
-                    }
-                ]
+                "type": "chrome",
+                "url": "http://localhost:8080",
+                "webRoot": "/home/archbug/projects/http-server/build/BugHTTPServer"
             }
-        ]
     }
     
