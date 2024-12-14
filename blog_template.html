@@ -7,7 +7,7 @@
     <meta name="description" content="The Bug Report - Blog">
     <meta name="keywords" content="HTML, CSS, Javascript">
     <meta name="author" content="Bug Plowman">
-    <title>The Bug Report - Blog</title>
+    <title>{{.Req.URL.Path | trimPrefix "/blog/" | humanize "title" }}</title>
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
@@ -24,7 +24,10 @@
       <a href="/contact">Contact</a>
     </div>
 
-
+    <main>
+      <!-- Include blog content dynamically -->
+      {{ httpInclude (printf "/blog/%s.html" (.Req.URL.Path | trimPrefix "/blog/" | replace "_" "-")) }}
+    </main>
 
     <footer>
       <div id="footer">

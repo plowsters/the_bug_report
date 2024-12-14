@@ -1,0 +1,78 @@
+{
+	"apps": {
+			"http": {
+					"servers": {
+							"example": {
+									"listen": [":8080"],
+									"routes": [
+											{
+													"match": [
+															{
+																	"path": ["/"]
+															}
+													],
+													"handle": [
+															{
+																	"handler": "rewrite",
+																	"uri": "/index"
+															}
+													]
+											},
+											{
+												"match": [
+													{
+														"path_regexp": {
+															"name": "blog_routes",
+															"pattern": "^/blog/(.*)$"
+														}
+													}
+												],
+												"handle": [
+													{
+														"handler": "rewrite",
+														"uri": "/blog_template"
+													},
+													{
+														"handler": "templates",
+														"file_root": "{$ROOT_DIR}/blog",
+														"mime_types": ["text/html"]
+													}
+												]
+											},
+											{
+													"match": [
+															{
+																	"not": [
+																			{
+																					"path_regexp": {
+																							"name": "static_files",
+																							"pattern": ".*\\.(css|js|png|jpg|jpeg|gif|ico|webp|svg|json)$"
+																					}
+																			},
+																			{
+																					"path": ["/"]
+																			}
+																	]
+															}
+													],
+													"handle": [
+															{
+																	"handler": "rewrite",
+																	"uri": "{http.request.uri.path}.html"
+															}
+													]
+											},
+											{
+													"handle": [
+															{
+																	"handler": "file_server",
+																	"root": "{$ROOT_DIR}"
+															}
+													]
+											}
+									]
+							}
+					}
+			}
+	}
+}
